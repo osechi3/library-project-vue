@@ -23,7 +23,7 @@
         <label class="labels" for="boo-is-read-yes">Yes</label>
       </div>
     </div>
-    <button id="btn-submit">Submit New Book</button>
+    <button id="btn-submit" @click.prevent="sendBook">Submit New Book</button>
   </div>
 </template>
 
@@ -37,6 +37,20 @@ export default {
         numberOfPages: 0,
         isRead: 'no'
       }
+    }
+  },
+
+  methods: {
+    sendBook () {
+      this.$store.dispatch('sendBook', this.newBook)
+      this.clearInput()
+    },
+
+    clearInput () {
+      this.newBook.title = ''
+      this.newBook.author = ''
+      this.newBook.numberOfPages = 0
+      this.newBook.isRead = 'no'
     }
   }
 }
