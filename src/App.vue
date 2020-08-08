@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <app-header @add-book-btn-clicked="isShown = !isShown"></app-header>
-    <input-prompt v-if="isShown"></input-prompt>
+    <input-prompt
+      v-if="isShown"
+      @submit-btn-clicked="isShown = !isShown">
+    </input-prompt>
     <app-book-shelf></app-book-shelf>
   </div>
 </template>

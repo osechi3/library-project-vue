@@ -66,6 +66,7 @@ export default {
     sendBook () {
       this.$store.dispatch('sendBook', this.newBook)
       this.clearInput()
+      this.$emit('submit-btn-clicked')
     },
 
     clearInput () {
