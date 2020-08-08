@@ -3,10 +3,10 @@
     <div
       class="color-overlay"
       v-if="isShown"></div>
-    <app-header @add-book-btn-clicked="isShown = !isShown"></app-header>
+    <app-header @add-book-btn-clicked="toggleInputBox"></app-header>
     <input-prompt
       v-if="isShown"
-      @submit-btn-clicked="isShown = !isShown">
+      @submit-btn-clicked="toggleInputBox">
     </input-prompt>
     <app-book-shelf></app-book-shelf>
   </div>
@@ -28,6 +28,12 @@ export default {
   data () {
     return {
       isShown: false
+    }
+  },
+
+  methods: {
+    toggleInputBox () {
+      this.isShown = !this.isShown
     }
   }
 }
