@@ -17,6 +17,7 @@
     align-items: center;
 
     height: 60px;
+    margin-bottom: 40px;
 
     color: white;
     font-weight: bold;
