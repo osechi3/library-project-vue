@@ -19,7 +19,7 @@
       <div id="book-is-read">
         <input id="book-is-read-no" v-model="newBook.isRead" type="radio" value="no">
         <label class="labels" for="boo-is-read-no">No</label>
-        <input id="book-is-read-yes" v-model="newBook.isRead" type="radio" value="yes">
+        <input id="book-is-read-yes" v-model="newBook.isRead" type="radio" true-value="yes" false-value="no">
         <label class="labels" for="boo-is-read-yes">Yes</label>
       </div>
     </div>

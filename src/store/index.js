@@ -9,16 +9,26 @@ export default new Vuex.Store({
       books: [{ title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }]
     }
   },
+
   getters: {
     userBooks (state) {
       return state.user.books
     }
   },
+
   mutations: {
     ADD_BOOK (state, newBook) {
       state.user.books.push(newBook)
+    },
+
+    CHANGE_BOOK (state, bookInfo) {
+      console.log(state.user.books[0].title)
+      console.log(bookInfo.index)
+      state.user.books[bookInfo.index] = bookInfo
+      console.log(state.user.books[0].title)
     }
   },
+
   actions: {
     sendBook ({ commit }, newBook) {
       commit('ADD_BOOK', {
@@ -27,8 +37,13 @@ export default new Vuex.Store({
         numberOfPages: newBook.numberOfPages,
         isRead: newBook.isRead
       })
+    },
+
+    changeBook ({ commit }, bookInfo) {
+      commit('CHANGE_BOOK', bookInfo)
     }
   },
+
   modules: {
   }
 })

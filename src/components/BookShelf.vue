@@ -5,9 +5,10 @@
     </div>
     <div id="container-body">
       <app-book
-      v-for="book in userBooks"
+      v-for="(book, index) in userBooks"
       :key="book.title"
-      :book="book"></app-book>
+      :book="book"
+      :index="index"></app-book>
     </div>
   </div>
 </template>
