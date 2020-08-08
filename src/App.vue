@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <input-prompt></input-prompt>
+    <app-header @add-book-btn-clicked="isShown = !isShown"></app-header>
+    <input-prompt v-if="isShown"></input-prompt>
   </div>
 </template>
 
@@ -14,6 +14,12 @@ export default {
   components: {
     appHeader: Header,
     inputPrompt: InputPrompt
+  },
+
+  data () {
+    return {
+      isShown: false
+    }
   }
 }
 </script>

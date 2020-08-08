@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div class="title">Vue Library</div>
-    <button class="btns">Add Book</button>
+    <button class="btns" @click.prevent="$emit('add-book-btn-clicked')">Add Book</button>
     <button class="btns">Add List</button>
   </div>
 </template>
