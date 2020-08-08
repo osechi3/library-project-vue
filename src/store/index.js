@@ -26,6 +26,10 @@ export default new Vuex.Store({
       console.log(bookInfo.index)
       state.user.books[bookInfo.index] = bookInfo
       console.log(state.user.books[0].title)
+    },
+
+    DELETE_BOOK (state, index) {
+      state.user.books.splice(index, 1)
     }
   },
 
@@ -41,6 +45,10 @@ export default new Vuex.Store({
 
     changeBook ({ commit }, bookInfo) {
       commit('CHANGE_BOOK', bookInfo)
+    },
+
+    deleteBook ({ commit }, { index }) {
+      commit('DELETE_BOOK', index)
     }
   },
 

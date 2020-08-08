@@ -53,9 +53,18 @@
         <button
           v-else
           class="btn-actions btn-confirm"
-          @click.prevent="confirmChanges">Confirm
+          @click.prevent="confirmChanges">Apply
         </button>
-        <button class="btn-actions">Del</button>
+        <button
+          v-if="!isConfirmShown"
+          class="btn-actions"
+          @click.prevent="isConfirmShown = !isConfirmShown">Del
+        </button>
+        <button
+          v-else
+          class="btn-actions btn-confirm-del"
+          @click.prevent="confirmDeletion">Sure?
+        </button>
       </div>
     </div>
   </div>
@@ -86,18 +95,25 @@ export default {
         index: this.index
       },
 
-      isEditAllowed: false
+      isEditAllowed: false,
+      isConfirmShown: false
     }
   },
 
   methods: {
     ...mapActions([
-      'changeBook'
+      'changeBook',
+      'deleteBook'
     ]),
 
     confirmChanges () {
       this.changeBook(this.currentBook)
       this.isEditAllowed = !this.isEditAllowed
+    },
+
+    confirmDeletion () {
+      this.deleteBook(this.currentBook)
+      this.isConfirmShown = !this.isConfirmShown
     }
   }
 }
@@ -151,6 +167,10 @@ export default {
   .btn-confirm {
     background-color: lightgreen;
     border: 1px solid lightgreen;
+  }
+  .btn-confirm-del {
+    background-color: #fca311;
+    border: 1px solid #fca311;
   }
 
   .input-text {
