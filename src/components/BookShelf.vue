@@ -48,8 +48,10 @@ export default {
   }
   #container-body {
     padding-top: 25px;
+
     background-color: white;
   }
+
   .title {
     margin-top: 10px;
 

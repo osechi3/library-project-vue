@@ -4,25 +4,47 @@
     <br>
     <div class="container-input">
       <label class="labels" for="book-title">Title:</label>
-      <input id="book-title" v-model="newBook.title" type="text">
+      <input
+        id="book-title"
+        v-model="newBook.title"
+        type="text">
     </div>
+
     <div class="container-input">
       <label class="labels" for="book-author">Author:</label>
-      <input id="book-author" v-model="newBook.author" type="text">
+      <input
+        id="book-author"
+        v-model="newBook.author"
+        type="text">
     </div>
+
     <div class="container-input">
       <label class="labels" for="book-number-of-pages">Pages in the book:</label>
-      <input id="book-number-of-pages" v-model="newBook.numberOfPages" type="number">
+      <input
+        id="book-number-of-pages"
+        v-model="newBook.numberOfPages"
+        type="number">
     </div>
+
     <div class="container-input">
       <label class="labels" for="book-is-read">Have you read it?</label>
       <div id="book-is-read">
-        <input id="book-is-read-no" v-model="newBook.isRead" type="radio" value="no">
+        <input
+          id="book-is-read-no"
+          v-model="newBook.isRead"
+          type="radio"
+          value="no">
         <label class="labels" for="boo-is-read-no">No</label>
-        <input id="book-is-read-yes" v-model="newBook.isRead" type="radio" true-value="yes" false-value="no">
+        <input
+          id="book-is-read-yes"
+          v-model="newBook.isRead"
+          type="radio"
+          true-value="yes"
+          false-value="no">
         <label class="labels" for="boo-is-read-yes">Yes</label>
       </div>
     </div>
+
     <button id="btn-submit" @click.prevent="sendBook">Submit New Book</button>
   </div>
 </template>

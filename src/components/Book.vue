@@ -123,6 +123,7 @@ export default {
   #container {
     display: flex;
   }
+
   .box {
     display: flex;
     flex-direction: column;
@@ -184,9 +185,9 @@ export default {
   .input-text-edit-border {
     border: 3px solid red;
   }
-
   input:disabled {
-    background-color: white;
     color: black;
+
+    background-color: white;
   }
 </style>

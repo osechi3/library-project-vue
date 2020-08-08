@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      books: [{ title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }]
+      books: [
+        { title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }
+      ]
     }
   },
 
