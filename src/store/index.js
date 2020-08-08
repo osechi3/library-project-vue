@@ -6,7 +6,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      books: []
+      books: [{ title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }]
+    }
+  },
+  getters: {
+    userBooks (state) {
+      return state.user.books
     }
   },
   mutations: {

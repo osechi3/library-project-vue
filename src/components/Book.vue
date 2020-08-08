@@ -2,19 +2,19 @@
   <div id="container">
     <div class="box">
       <h2 class="box-head">Title:</h2>
-      <p class="box-body">Totoro</p>
+      <p class="box-body">{{ book.title }}</p>
     </div>
     <div class="box">
       <h2 class="box-head">Author:</h2>
-      <p class="box-body">Miyazaki</p>
+      <p class="box-body">{{ book.author }}</p>
     </div>
     <div class="box">
       <h2 class="box-head">Number of Pages</h2>
-      <p class="box-body">281</p>
+      <p class="box-body">{{ book.numberOfPages }}</p>
     </div>
     <div class="box">
       <h2 class="box-head">Read?</h2>
-      <p class="box-body">Yes</p>
+      <p class="box-body">{{ book.isRead }}</p>
     </div>
     <div class="box">
       <h2 class="box-head">Actions</h2>
@@ -28,7 +28,12 @@
 
 <script>
 export default {
-
+  props: {
+    book: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 

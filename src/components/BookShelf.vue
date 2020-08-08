@@ -4,16 +4,27 @@
       <h1 class="title">Your books</h1>
     </div>
     <div id="container-body">
-      <app-book></app-book>
+      <app-book
+      v-for="book in userBooks"
+      :key="book.title"
+      :book="book"></app-book>
     </div>
   </div>
 </template>
 
 <script>
 import Book from './Book'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     appBook: Book
+  },
+
+  computed: {
+    ...mapGetters([
+      'userBooks'
+    ])
   }
 }
 </script>
