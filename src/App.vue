@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div
+      class="color-overlay"
+      v-if="isShown"></div>
     <app-header @add-book-btn-clicked="isShown = !isShown"></app-header>
     <input-prompt
       v-if="isShown"
@@ -32,8 +35,22 @@ export default {
 
 <style>
  body {
+   overflow-x: hidden;
+   overflow-y: hidden;
+
    margin: 0;
 
    background-color: #E5E5E5;
  }
+.color-overlay {
+  position: absolute;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: black;
+  border: 1px solid;
+  opacity: .5;
+}
 </style>
