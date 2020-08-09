@@ -17,6 +17,7 @@
 import Header from './components/Header'
 import InputPrompt from './components/InputPrompt'
 import BookShelf from './components/BookShelf'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -32,7 +33,15 @@ export default {
     }
   },
 
+  created () {
+    this.getServerInfo()
+  },
+
   methods: {
+    ...mapActions([
+      'getServerInfo'
+    ]),
+
     toggleInputBox () {
       this.isShown = !this.isShown
     }
