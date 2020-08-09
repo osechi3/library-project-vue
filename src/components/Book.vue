@@ -79,13 +79,19 @@
           class="btn-actions btn-confirm"
           @click.prevent="confirmChanges">Apply
         </button>
+
         <button
-          v-if="!isConfirmShown"
+          v-if="isEditAllowed"
+          class="btn-actions btn-abort"
+          @click.prevent="abortChanges">Abort
+        </button>
+        <button
+          v-else-if="!isEditAllowed && !isConfirmShown"
           class="btn-actions"
           @click.prevent="isConfirmShown = !isConfirmShown">Del
         </button>
         <button
-          v-else
+          v-if="isConfirmShown"
           class="btn-actions btn-confirm-del"
           @click.prevent="confirmDeletion">Sure?
         </button>
@@ -95,7 +101,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 
 export default {
@@ -125,6 +131,12 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters([
+      'userBooks'
+    ])
+  },
+
   methods: {
     ...mapActions([
       'changeBook',
@@ -136,6 +148,11 @@ export default {
         this.changeBook(this.currentBook)
         this.isEditAllowed = !this.isEditAllowed
       }
+    },
+
+    abortChanges () {
+      this.isEditAllowed = !this.isEditAllowed
+      this.currentBook = this.userBooks[this.index]
     },
 
     confirmDeletion () {
@@ -211,6 +228,10 @@ export default {
   .btn-confirm-del {
     background-color: #fca311;
     border: 1px solid #fca311;
+  }
+  .btn-abort {
+    background-color: red;
+    border: 1px solid red;
   }
 
   .input-text {
