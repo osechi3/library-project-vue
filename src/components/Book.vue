@@ -51,7 +51,7 @@
       </p>
       <p
         v-if="!$v.currentBook.numberOfPages.required && $v.currentBook.numberOfPages.$dirty"
-        class="error-msg">Don't leave this field empty.
+        class="error-msg">Please enter a number.
       </p>
     </div>
 
