@@ -11,7 +11,9 @@
       <label class="labels" for="book-title">Title:</label>
       <input
         id="book-title"
-        v-model="newBook.title"
+        v-model.trim="newBook.title"
+        :class="{ invalid: $v.newBook.title.$error }"
+        :placeholder="$v.newBook.title.required ? 'Don\'t leave this field empty.' : 'Enter the title of the book.'"
         type="text">
     </div>
 
@@ -19,7 +21,9 @@
       <label class="labels" for="book-author">Author:</label>
       <input
         id="book-author"
-        v-model="newBook.author"
+        v-model.trim="newBook.author"
+        :class="{ invalid: $v.newBook.author.$error }"
+        :placeholder="$v.newBook.author.required ? 'Don\'t leave this field empty.' : 'Enter the author of the book.'"
         type="text">
     </div>
 
@@ -27,8 +31,11 @@
       <label class="labels" for="book-number-of-pages">Pages in the book:</label>
       <input
         id="book-number-of-pages"
-        v-model="newBook.numberOfPages"
+        v-model.number="newBook.numberOfPages"
+        :class="{ invalid: $v.newBook.numberOfPages.$error }"
+        :placeholder="$v.newBook.author.required ? 'Don\'t leave this field empty.' : 'Enter the number of pages in the book.'"
         type="number">
+        <p v-if="$v.newBook.numberOfPages.$error" style="margin: 3px">The number of pages must be greater than 0.</p>
     </div>
 
     <div class="container-input">
@@ -50,11 +57,15 @@
       </div>
     </div>
 
-    <button id="btn-submit" @click.prevent="sendBook">Submit New Book</button>
+    <button
+     id="btn-submit"
+     @click.prevent="sendBook">Submit New Book</button>
   </div>
 </template>
 
 <script>
+import { required, minValue } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -69,9 +80,16 @@ export default {
 
   methods: {
     sendBook () {
-      this.$store.dispatch('sendBook', this.newBook)
-      this.clearInput()
-      this.$emit('submit-btn-clicked')
+      if (this.validate() === true) {
+        this.$store.dispatch('sendBook', this.newBook)
+        this.clearInput()
+        this.$emit('submit-btn-clicked')
+      }
+    },
+
+    validate () {
+      this.$v.$touch()
+      return !this.$v.$invalid
     },
 
     clearInput () {
@@ -79,6 +97,14 @@ export default {
       this.newBook.author = ''
       this.newBook.numberOfPages = 0
       this.newBook.isRead = 'no'
+    }
+  },
+
+  validations: {
+    newBook: {
+      title: { required },
+      author: { required },
+      numberOfPages: { required, minValue: minValue(1) }
     }
   }
 }
@@ -150,5 +176,10 @@ export default {
   }
   #btn-close:hover {
     color: red;
+  }
+
+  .invalid {
+    color: red;
+    font-weight: bold;
   }
 </style>
