@@ -15,6 +15,10 @@
         :class="{ invalid: $v.newBook.title.$error }"
         :placeholder="$v.newBook.title.required ? 'Don\'t leave this field empty.' : 'Enter the title of the book.'"
         type="text">
+      <p
+        v-if="!$v.newBook.title.maxLength"
+        class="error-msg">The title of the book must be less than {{ $v.newBook.title.$params.maxLength.max }} characters.
+      </p>
     </div>
 
     <div class="container-input">
@@ -25,6 +29,10 @@
         :class="{ invalid: $v.newBook.author.$error }"
         :placeholder="$v.newBook.author.required ? 'Don\'t leave this field empty.' : 'Enter the author of the book.'"
         type="text">
+      <p
+        v-if="!$v.newBook.author.maxLength"
+        class="error-msg">The author must be less than {{ $v.newBook.author.$params.maxLength.max }} characters.
+      </p>
     </div>
 
     <div class="container-input">
@@ -35,7 +43,10 @@
         :class="{ invalid: $v.newBook.numberOfPages.$error }"
         :placeholder="$v.newBook.author.required ? 'Don\'t leave this field empty.' : 'Enter the number of pages in the book.'"
         type="number">
-        <p v-if="$v.newBook.numberOfPages.$error" style="margin: 3px">The number of pages must be greater than 0.</p>
+        <p
+          v-if="$v.newBook.numberOfPages.$error"
+          class="error-msg">The number of pages must be greater than 0.
+        </p>
     </div>
 
     <div class="container-input">
@@ -64,7 +75,7 @@
 </template>
 
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   data () {
@@ -102,8 +113,8 @@ export default {
 
   validations: {
     newBook: {
-      title: { required },
-      author: { required },
+      title: { required, maxLength: maxLength(23) },
+      author: { required, maxLength: maxLength(23) },
       numberOfPages: { required, minValue: minValue(1) }
     }
   }
@@ -181,5 +192,8 @@ export default {
   .invalid {
     color: red;
     font-weight: bold;
+  }
+  .error-msg {
+    margin: 3px;
   }
 </style>
