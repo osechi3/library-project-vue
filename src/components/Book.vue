@@ -41,7 +41,7 @@
       <h2 class="box-head">Number of Pages</h2>
       <input
         class="input-text"
-        :class="{ 'input-text-edit-border': isEditAllowed }"
+        :class="{ 'input-text-edit-border': isEditAllowed, 'hide-number-arrows': !isEditAllowed }"
         type="number"
         v-model="currentBook.numberOfPages"
         :disabled="!isEditAllowed">
@@ -223,6 +223,11 @@ export default {
   }
   .input-text-edit-border {
     border: 3px solid red;
+  }
+  .hide-number-arrows {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
   }
   input:disabled {
     color: black;
