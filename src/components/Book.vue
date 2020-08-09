@@ -9,6 +9,14 @@
         type="text"
         v-model="currentBook.title"
         :disabled="!isEditAllowed">
+        <p
+          v-if="!$v.currentBook.title.maxLength"
+          class="error-msg">The title must be less than {{ $v.currentBook.title.$params.maxLength.max }} characters.
+        </p>
+        <p
+          v-if="!$v.currentBook.title.required && $v.currentBook.title.$dirty"
+          class="error-msg">Don't leave this field empty.
+        </p>
     </div>
 
     <div class="box">
@@ -19,6 +27,14 @@
         type="text"
         v-model="currentBook.author"
         :disabled="!isEditAllowed">
+      <p
+        v-if="!$v.currentBook.author.maxLength"
+        class="error-msg">The author must be less than {{ $v.currentBook.author.$params.maxLength.max }} characters.
+      </p>
+      <p
+        v-if="!$v.currentBook.author.required && $v.currentBook.author.$dirty"
+        class="error-msg">Don't leave this field empty.
+      </p>
     </div>
 
     <div class="box">
@@ -29,6 +45,14 @@
         type="number"
         v-model="currentBook.numberOfPages"
         :disabled="!isEditAllowed">
+      <p
+        v-if="!$v.currentBook.numberOfPages.minValue && $v.currentBook.numberOfPages.$dirty"
+        class="error-msg">The number of pages must be greater than 0.
+      </p>
+      <p
+        v-if="!$v.currentBook.numberOfPages.required && $v.currentBook.numberOfPages.$dirty"
+        class="error-msg">Don't leave this field empty.
+      </p>
     </div>
 
     <div class="box">
@@ -72,6 +96,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   props: {
@@ -107,13 +132,28 @@ export default {
     ]),
 
     confirmChanges () {
-      this.changeBook(this.currentBook)
-      this.isEditAllowed = !this.isEditAllowed
+      if (this.validate()) {
+        this.changeBook(this.currentBook)
+        this.isEditAllowed = !this.isEditAllowed
+      }
     },
 
     confirmDeletion () {
       this.deleteBook(this.currentBook)
       this.isConfirmShown = !this.isConfirmShown
+    },
+
+    validate () {
+      this.$v.$touch()
+      return !this.$v.$invalid
+    }
+  },
+
+  validations: {
+    currentBook: {
+      title: { required, maxLength: maxLength(23) },
+      author: { required, maxLength: maxLength(23) },
+      numberOfPages: { required, minValue: minValue(1) }
     }
   }
 }
@@ -125,6 +165,7 @@ export default {
   }
 
   .box {
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -187,5 +228,21 @@ export default {
     color: black;
 
     background-color: white;
+  }
+
+  .error-msg {
+    position: absolute;
+    top: 52px;
+    left: 2px;
+    padding: 3px;
+    z-index: 1;
+
+    width: 215px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    background-color: #fca311;
+    outline: 3px solid red;
   }
 </style>
