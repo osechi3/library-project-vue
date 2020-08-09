@@ -1,5 +1,10 @@
 <template>
   <div id="container">
+    <a
+      id="btn-close"
+      href="#"
+      @click="$emit('close-btn-clicked')">✖
+    </a>
     <h1 id="container-title">Add New Book</h1>
     <br>
     <div class="container-input">
@@ -132,5 +137,18 @@ export default {
     color: black;
 
     background-color: #fca311;
+  }
+  #btn-close {
+    align-self:flex-end;
+
+    margin: 5px 10px;
+
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  #btn-close:hover {
+    color: red;
   }
 </style>

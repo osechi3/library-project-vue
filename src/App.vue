@@ -6,7 +6,8 @@
     <app-header @add-book-btn-clicked="toggleInputBox"></app-header>
     <input-prompt
       v-if="isShown"
-      @submit-btn-clicked="toggleInputBox">
+      @submit-btn-clicked="toggleInputBox"
+      @close-btn-clicked="toggleInputBox">
     </input-prompt>
     <app-book-shelf></app-book-shelf>
   </div>
