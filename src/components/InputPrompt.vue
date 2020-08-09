@@ -44,7 +44,7 @@
         :placeholder="$v.newBook.author.required ? 'Don\'t leave this field empty.' : 'Enter the number of pages in the book.'"
         type="number">
         <p
-          v-if="$v.newBook.numberOfPages.$error"
+          v-if="!$v.newBook.numberOfPages.minValue && $v.newBook.numberOfPages.$dirty"
           class="error-msg">The number of pages must be greater than 0.
         </p>
     </div>
