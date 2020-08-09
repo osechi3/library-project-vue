@@ -34,8 +34,6 @@ export default {
   #container {
     width: 920px;
     margin: 0 auto;
-
-    outline: 1px solid;
   }
   #container-head {
     display: flex;

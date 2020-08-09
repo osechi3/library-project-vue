@@ -131,17 +131,15 @@ export default {
     width: 230px;
 
     text-align: center;
-
-    outline: 1px solid;
   }
   .box-head {
     margin: 0;
     padding: 4px 0;
 
-    font-size: 19px;
+    font-size: 17px;
     color: white;
 
-    background-color: black;
+    background-color: orange;
   }
   .box-body {
     margin: 5px 0;
