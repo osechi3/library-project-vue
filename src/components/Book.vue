@@ -88,7 +88,7 @@
         <button
           v-else-if="!isEditAllowed && !isConfirmShown"
           class="btn-actions"
-          @click.prevent="isConfirmShown = !isConfirmShown">Del
+          @click.prevent="showDeleteConfirmation">Del
         </button>
         <button
           v-if="isConfirmShown"
@@ -164,6 +164,13 @@ export default {
       this.currentBook = Object.assign(this.currentBook, this.userBooks[this.index])
       this.isEditAllowed = !this.isEditAllowed
       // console.log(this.currentBook)
+    },
+
+    showDeleteConfirmation () {
+      this.isConfirmShown = !this.isConfirmShown
+      setTimeout(() => {
+        this.isConfirmShown = !this.isConfirmShown
+      }, 3000)
     },
 
     confirmDeletion () {
