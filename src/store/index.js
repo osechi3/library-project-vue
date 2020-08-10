@@ -27,7 +27,7 @@ export default new Vuex.Store({
     CHANGE_BOOK (state, bookInfo) {
       console.log(state.user.books[0].title)
       console.log(bookInfo.index)
-      state.user.books[bookInfo.index] = bookInfo
+      state.user.books[bookInfo.index] = Object.assign(state.user.books[bookInfo.index], bookInfo)
       console.log(state.user.books[0].title)
     },
 
