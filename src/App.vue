@@ -9,7 +9,10 @@
       @submit-btn-clicked="toggleInputBox"
       @close-btn-clicked="toggleInputBox">
     </input-prompt>
-    <app-book-shelf></app-book-shelf>
+    <div id="shelf-container">
+      <app-list-shelf></app-list-shelf>
+      <app-book-shelf></app-book-shelf>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,8 @@
 import Header from './components/Header'
 import InputPrompt from './components/InputPrompt'
 import BookShelf from './components/BookShelf'
+import ListShelf from './components/ListShelf'
+
 import { mapActions } from 'vuex'
 
 export default {
@@ -24,7 +29,8 @@ export default {
   components: {
     appHeader: Header,
     inputPrompt: InputPrompt,
-    appBookShelf: BookShelf
+    appBookShelf: BookShelf,
+    appListShelf: ListShelf
   },
 
   data () {
@@ -68,5 +74,9 @@ export default {
   background-color: black;
   border: 1px solid;
   opacity: .5;
+}
+
+#shelf-container {
+  display: flex;
 }
 </style>
