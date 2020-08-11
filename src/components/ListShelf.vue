@@ -4,20 +4,24 @@
       <h1 class="title">Your lists</h1>
     </div>
     <div id="container-body">
-
+      <app-list></app-list>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import List from './List'
 
+export default {
+  components: {
+    appList: List
+  }
 }
 </script>
 
 <style scoped>
   #container {
-    width: 300px;
+    width: 360px;
     margin: 0 auto;
   }
   #container-head {
