@@ -2,13 +2,24 @@
   <div id="app">
     <div
       class="color-overlay"
-      v-if="isShown"></div>
-    <app-header @add-book-btn-clicked="toggleInputBox"></app-header>
+      v-if="isShownInputBoxBook || isShownInputBoxList">
+    </div>
+    <app-header
+      @add-book-btn-clicked="toggleInputBoxBook"
+      @add-list-btn-clicked="toggleInputBoxList">
+    </app-header>
+
     <input-prompt
-      v-if="isShown"
-      @submit-btn-clicked="toggleInputBox"
-      @close-btn-clicked="toggleInputBox">
+      v-if="isShownInputBoxBook"
+      @submit-btn-clicked="toggleInputBoxBook"
+      @close-btn-clicked="toggleInputBoxBook">
     </input-prompt>
+    <input-prompt-list
+      v-if="isShownInputBoxList"
+      @submit-btn-clicked="toggleInputBoxList"
+      @close-btn-clicked="toggleInputBoxList">
+    </input-prompt-list>
+
     <div id="shelf-container">
       <app-list-shelf></app-list-shelf>
       <app-book-shelf></app-book-shelf>
@@ -23,19 +34,22 @@ import BookShelf from './components/BookShelf'
 import ListShelf from './components/ListShelf'
 
 import { mapActions } from 'vuex'
+import InputPromptList from './components/InputPromptList'
 
 export default {
   name: 'App',
   components: {
     appHeader: Header,
     inputPrompt: InputPrompt,
+    inputPromptList: InputPromptList,
     appBookShelf: BookShelf,
     appListShelf: ListShelf
   },
 
   data () {
     return {
-      isShown: false
+      isShownInputBoxBook: false,
+      isShownInputBoxList: false
     }
   },
 
@@ -48,8 +62,11 @@ export default {
       'getServerInfo'
     ]),
 
-    toggleInputBox () {
-      this.isShown = !this.isShown
+    toggleInputBoxBook () {
+      this.isShownInputBoxBook = !this.isShownInputBoxBook
+    },
+    toggleInputBoxList () {
+      this.isShownInputBoxList = !this.isShownInputBoxList
     }
   }
 }
