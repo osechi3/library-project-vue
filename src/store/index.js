@@ -9,6 +9,9 @@ export default new Vuex.Store({
     user: {
       books: [
         { title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }
+      ],
+      lists: [
+        { title: 'Test' }
       ]
     }
   },
@@ -16,6 +19,10 @@ export default new Vuex.Store({
   getters: {
     userBooks (state) {
       return state.user.books
+    },
+
+    userLists (state) {
+      return state.user.lists
     }
   },
 
@@ -33,11 +40,24 @@ export default new Vuex.Store({
 
     DELETE_BOOK (state, index) {
       state.user.books.splice(index, 1)
+    },
+
+    ADD_LIST (state, newList) {
+      state.user.lists.push(newList)
+    },
+
+    CHANGE_LIST (state, listInfo) {
+      state.user.books[listInfo.index] =
+        Object.assign(state.user.books[listInfo.index], listInfo)
+    },
+
+    DELETE_LIST (state, index) {
+      state.user.lists.splice(index, 1)
     }
   },
 
   actions: {
-    sendBook ({ commit, state, dispatch }, newBook) {
+    sendBook ({ commit, dispatch }, newBook) {
       commit('ADD_BOOK', {
         title: newBook.title,
         author: newBook.author,
@@ -57,6 +77,23 @@ export default new Vuex.Store({
       dispatch('updateServerInfo')
     },
 
+    sendList ({ commit, dispatch }, newList) {
+      commit('ADD_LIST', {
+        title: newList.title
+      })
+      dispatch('updateServerInfo')
+    },
+
+    changeList ({ commit, dispatch }, listInfo) {
+      commit('CHANGE_LIST', listInfo)
+      dispatch('updateServerInfo')
+    },
+
+    deleteList ({ commit, dispatch }, { index }) {
+      commit('DELETE_LIST', index)
+      dispatch('updateServerInfo')
+    },
+
     updateServerInfo ({ dispatch, state }) {
       axios.put('user.json', state.user)
         .then(response => console.log(response))
@@ -69,6 +106,9 @@ export default new Vuex.Store({
           for (const key in response.data) {
             if (key === 'books') {
               state.user.books = response.data[key]
+            }
+            if (key === 'lists') {
+              state.user.lists = response.data[key]
             }
           }
         })
