@@ -2,7 +2,16 @@
   <div id="container">
     <input class="container-name" type="text" v-model="currentList.title">
     <button class="btn-actions">Rename</button>
-    <button class="btn-actions" @click="deleteList">Del</button>
+    <button
+      v-if="!isConfirmShown"
+      class="btn-actions"
+      @click="showDeleteConfirmation">Del
+    </button>
+    <button
+      v-else
+      class="btn-actions btn-confirm-del"
+      @click="confirmDeletion">Sure?
+    </button>
   </div>
 </template>
 
@@ -29,14 +38,28 @@ export default {
       currentList: {
         title: this.list.title,
         index: this.index
-      }
+      },
+
+      isConfirmShown: false
     }
   },
 
   methods: {
     ...mapActions([
       'deleteList'
-    ])
+    ]),
+
+    showDeleteConfirmation () {
+      this.isConfirmShown = !this.isConfirmShown
+      setTimeout(() => {
+        this.isConfirmShown = !this.isConfirmShown
+      }, 3000)
+    },
+
+    confirmDeletion () {
+      this.deleteList(this.currentList)
+      this.isConfirmShown = !this.isConfirmShown
+    }
   }
 }
 </script>
