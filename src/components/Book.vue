@@ -105,6 +105,8 @@ import { mapActions, mapGetters } from 'vuex'
 import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 import { mixinHelperFunctions } from '../mixins/MixinHelperFunctions'
 
+import '../styles/style-btns.css'
+
 export default {
   mixins: [mixinHelperFunctions],
 
@@ -221,35 +223,6 @@ export default {
     margin: 5px 0;
 
     font-size: 17px;
-  }
-
-  .btn-actions {
-    margin: 0 5px;
-
-    font-weight: bold;
-    color: white;
-
-    border: none;
-    border: 1px solid black;
-    border-radius: 3px;
-    background-color: black;
-  }
-  .btn-actions:hover {
-    color: black;
-
-    background-color: white;
-  }
-  .btn-confirm {
-    background-color: lightgreen;
-    border: 1px solid lightgreen;
-  }
-  .btn-confirm-del {
-    background-color: #fca311;
-    border: 1px solid #fca311;
-  }
-  .btn-abort {
-    background-color: red;
-    border: 1px solid red;
   }
 
   .input-text {
