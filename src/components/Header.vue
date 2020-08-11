@@ -5,7 +5,9 @@
       class="btns"
       @click.prevent="$emit('add-book-btn-clicked')">Add Book
     </button>
-    <button class="btns">Add List</button>
+    <button
+      class="btns"
+      @click.prevent="$emit('add-list-btn-clicked')">Add List</button>
   </div>
 </template>
 
