@@ -74,6 +74,7 @@ export default {
     width: 600px;
     top: 50%;
     left: 50%;
+    z-index: 2;
     transform: translate(-50%, -50%);
 
     background-color: white;
