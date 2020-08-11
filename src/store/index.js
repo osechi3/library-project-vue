@@ -10,9 +10,7 @@ export default new Vuex.Store({
       books: [
         { title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }
       ],
-      lists: [
-        { title: 'Test' }
-      ]
+      lists: []
     }
   },
 
@@ -47,8 +45,8 @@ export default new Vuex.Store({
     },
 
     CHANGE_LIST (state, listInfo) {
-      state.user.books[listInfo.index] =
-        Object.assign(state.user.books[listInfo.index], listInfo)
+      state.user.lists[listInfo.index] =
+        Object.assign(state.user.lists[listInfo.index], listInfo)
     },
 
     DELETE_LIST (state, index) {
