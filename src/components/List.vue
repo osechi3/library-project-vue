@@ -1,14 +1,41 @@
 <template>
   <div id="container">
-    <input class="container-name" type="text" value="The title of the list">
+    <input class="container-name" type="text" v-model="currentList.title">
     <button class="btns">Rename</button>
-    <button class="btns">Del</button>
+    <button class="btns" @click="deleteList">Del</button>
   </div>
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex'
 
+export default {
+  props: {
+    list: {
+      type: Object,
+      required: true
+    },
+
+    index: {
+      type: Number,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      currentList: {
+        title: this.list.title,
+        index: this.index
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions([
+      'deleteList'
+    ])
+  }
 }
 </script>
 
