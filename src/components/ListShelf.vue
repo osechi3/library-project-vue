@@ -4,17 +4,29 @@
       <h1 class="title">Your lists</h1>
     </div>
     <div id="container-body">
-      <app-list></app-list>
+      <app-list
+      v-for="(list, index) in userLists"
+      :key="list.title"
+      :list="list"
+      :index="index">
+    </app-list>
     </div>
   </div>
 </template>
 
 <script>
 import List from './List'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     appList: List
+  },
+
+  computed: {
+    ...mapGetters([
+      'userLists'
+    ])
   }
 }
 </script>
