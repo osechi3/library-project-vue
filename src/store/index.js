@@ -67,7 +67,6 @@ export default new Vuex.Store({
 
   actions: {
     sendBook ({ commit, dispatch, getters }, newBook) {
-      console.log(newBook.listIndex)
       commit('ADD_BOOK', {
         title: newBook.title,
         author: newBook.author,
@@ -83,7 +82,8 @@ export default new Vuex.Store({
       dispatch('updateServerInfo')
     },
 
-    deleteBook ({ commit, dispatch }, { index }) {
+    deleteBook ({ commit, dispatch }, index) {
+      console.log(index)
       commit('DELETE_BOOK', index)
       dispatch('updateServerInfo')
     },

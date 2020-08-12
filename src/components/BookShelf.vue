@@ -5,7 +5,7 @@
     </div>
     <div id="container-body">
       <app-book
-      v-for="(book, index) in currentListUserBooks"
+      v-for="(book, index) in userBooks"
       :key="book.title"
       :book="book"
       :index="index"></app-book>

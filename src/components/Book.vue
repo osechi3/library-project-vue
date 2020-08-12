@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="container" v-show="book.listIndex === chosenList">
 
     <div class="box">
       <h2 class="box-head">Title:</h2>
@@ -138,7 +138,8 @@ export default {
 
   computed: {
     ...mapGetters([
-      'userBooks'
+      'userBooks',
+      'chosenList'
     ])
   },
 
@@ -176,7 +177,7 @@ export default {
     },
 
     confirmDeletion () {
-      this.deleteBook(this.currentBook)
+      this.deleteBook(this.index)
       this.isConfirmShown = !this.isConfirmShown
     },
 
