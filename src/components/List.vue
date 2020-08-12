@@ -134,7 +134,7 @@ export default {
     },
 
     confirmDeletion () {
-      this.deleteList(this.currentList)
+      this.deleteList(this.index)
       this.isConfirmShown = !this.isConfirmShown
     },
 
