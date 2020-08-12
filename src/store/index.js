@@ -7,9 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      books: [
-        { title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }
-      ],
+      books: [],
       lists: [{
         title: 'Main'
       }]
@@ -68,12 +66,14 @@ export default new Vuex.Store({
   },
 
   actions: {
-    sendBook ({ commit, dispatch }, newBook) {
+    sendBook ({ commit, dispatch, getters }, newBook) {
+      console.log(newBook.listIndex)
       commit('ADD_BOOK', {
         title: newBook.title,
         author: newBook.author,
         numberOfPages: newBook.numberOfPages,
-        isRead: newBook.isRead
+        isRead: newBook.isRead,
+        listIndex: getters.chosenList
       })
       dispatch('updateServerInfo')
     },

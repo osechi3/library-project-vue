@@ -5,7 +5,7 @@
     </div>
     <div id="container-body">
       <app-book
-      v-for="(book, index) in userBooks"
+      v-for="(book, index) in currentListUserBooks"
       :key="book.title"
       :book="book"
       :index="index"></app-book>
@@ -24,8 +24,15 @@ export default {
 
   computed: {
     ...mapGetters([
-      'userBooks'
-    ])
+      'userBooks',
+      'chosenList'
+    ]),
+    currentListUserBooks () {
+      return this.userBooks.filter((book, index) => {
+        console.log(book.listIndex)
+        return book.listIndex === this.chosenList
+      })
+    }
   }
 }
 </script>
