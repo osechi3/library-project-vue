@@ -21,6 +21,10 @@
           v-if="!$v.currentList.title.required && $v.currentList.title.$dirty"
           class="error-msg">Don't leave this field empty.
         </p>
+        <p
+          v-if="isDeletionErrorShown"
+          class="error-msg">You can't delete the default list.
+        </p>
     </div>
     <div class="box">
       <div class="box-body">
@@ -84,7 +88,8 @@ export default {
       },
 
       isEditAllowed: false,
-      isConfirmShown: false
+      isConfirmShown: false,
+      isDeletionErrorShown: false
     }
   },
 
@@ -134,8 +139,23 @@ export default {
     },
 
     confirmDeletion () {
-      this.deleteList(this.index)
-      this.isConfirmShown = !this.isConfirmShown
+      if (!this.checkIfDefaultList()) {
+        this.deleteList(this.index)
+        this.isConfirmShown = !this.isConfirmShown
+      } else {
+        this.showDeletionError()
+      }
+    },
+
+    checkIfDefaultList () {
+      return (this.index === 0)
+    },
+
+    showDeletionError () {
+      this.isDeletionErrorShown = !this.isDeletionErrorShown
+      setTimeout(() => {
+        this.isDeletionErrorShown = !this.isDeletionErrorShown
+      }, 3000)
     },
 
     validate () {
