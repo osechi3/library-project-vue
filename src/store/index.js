@@ -59,6 +59,12 @@ export default new Vuex.Store({
       state.user.lists.splice(index, 1)
     },
 
+    DELETE_LIST_CHILDREN (state, index) {
+      state.user.books = state.user.books.filter((book) => {
+        return (book.listIndex !== index)
+      })
+    },
+
     CHANGE_CHOSEN_LIST (state, listInfo) {
       state.chosenList = listInfo.index
       console.log(state.chosenList)
@@ -100,8 +106,9 @@ export default new Vuex.Store({
       dispatch('updateServerInfo')
     },
 
-    deleteList ({ commit, dispatch }, { index }) {
+    deleteList ({ commit, dispatch }, index) {
       commit('DELETE_LIST', index)
+      commit('DELETE_LIST_CHILDREN', index)
       dispatch('updateServerInfo')
     },
 
