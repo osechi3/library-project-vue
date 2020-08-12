@@ -1,12 +1,18 @@
 <template>
   <div id="container">
     <div class="box">
-      <input
-        class="input-text"
-        :class="{ 'input-text-edit-border': isEditAllowed }"
-        type="text"
-        v-model="currentList.title"
-        :disabled="!isEditAllowed">
+      <span
+        v-if="!isEditAllowed"
+        class="choose-list-overlay"
+        :class="{ 'chosen-list-color-overlay': isCurrentListChosen }"
+        @click="chooseList">
+      </span>
+        <input
+          class="input-text"
+          :class="{ 'input-text-edit-border': isEditAllowed }"
+          type="text"
+          v-model="currentList.title"
+          :disabled="!isEditAllowed">
         <p
           v-if="!$v.currentList.title.maxLength"
           class="error-msg">The title must be less than {{ $v.currentList.title.$params.maxLength.max }} characters.
@@ -84,14 +90,20 @@ export default {
 
   computed: {
     ...mapGetters([
-      'userLists'
-    ])
+      'userLists',
+      'chosenList'
+    ]),
+
+    isCurrentListChosen () {
+      return this.currentList.index === this.chosenList
+    }
   },
 
   methods: {
     ...mapActions([
       'changeList',
-      'deleteList'
+      'deleteList',
+      'changeChosenList'
     ]),
 
     confirmChanges () {
@@ -129,6 +141,12 @@ export default {
     validate () {
       this.$v.$touch()
       return !this.$v.$invalid
+    },
+
+    chooseList () {
+      console.log('clicked')
+      this.changeChosenList(this.currentList)
+      console.log(this.currentList.index === this.chosenList)
     }
   },
 
@@ -168,6 +186,7 @@ export default {
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+
     border: 3px solid white;
   }
   .input-text-edit-border {
@@ -192,5 +211,18 @@ export default {
     font-weight: bold;
 
     background-color: #fca311;
+  }
+
+  .choose-list-overlay {
+    position: absolute;
+    height: 37px;
+    width: 360px;
+
+    border: 1px transparent;
+  }
+
+  .chosen-list-color-overlay {
+    background-color: #ffa500;
+    opacity: .2;
   }
 </style>

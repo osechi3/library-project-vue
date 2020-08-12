@@ -10,8 +10,12 @@ export default new Vuex.Store({
       books: [
         { title: 'Test', author: 'Testor', numberOfPages: 255, isRead: 'yes' }
       ],
-      lists: []
-    }
+      lists: [{
+        title: 'Main'
+      }]
+    },
+
+    chosenList: 0
   },
 
   getters: {
@@ -21,6 +25,10 @@ export default new Vuex.Store({
 
     userLists (state) {
       return state.user.lists
+    },
+
+    chosenList (state) {
+      return state.chosenList
     }
   },
 
@@ -51,6 +59,11 @@ export default new Vuex.Store({
 
     DELETE_LIST (state, index) {
       state.user.lists.splice(index, 1)
+    },
+
+    CHANGE_CHOSEN_LIST (state, listInfo) {
+      state.chosenList = listInfo.index
+      console.log(state.chosenList)
     }
   },
 
@@ -90,6 +103,10 @@ export default new Vuex.Store({
     deleteList ({ commit, dispatch }, { index }) {
       commit('DELETE_LIST', index)
       dispatch('updateServerInfo')
+    },
+
+    changeChosenList ({ commit }, listInfo) {
+      commit('CHANGE_CHOSEN_LIST', listInfo)
     },
 
     updateServerInfo ({ dispatch, state }) {
