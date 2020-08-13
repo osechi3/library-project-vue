@@ -3,7 +3,7 @@
     <div id="container-head">
       <h1 class="title">Your lists</h1>
     </div>
-    <transition-group id="container-body" tag="div" name="fade-slide">
+    <transition-group id="container-body" tag="div" name="fade-slide-vertical">
       <app-list
         v-for="(list, index) in userLists"
         :key="list.title"
@@ -58,18 +58,18 @@ export default {
   }
 
   /* Animations */
-  .fade-slide-enter, .fade-slide-leave-to {
+  .fade-slide-vertical-enter, .fade-slide-vertical-leave-to {
     opacity: 0;
     transform: translateY(-10px);
   }
-  .fade-slide-enter-active {
+  .fade-slide-vertical-enter-active {
     transition: all .2s ease;
   }
-  .fade-slide-leave-active {
+  .fade-slide-vertical-leave-active {
     transition: all .2s ease;
     position: absolute;
   }
-  .fade-slide-move {
+  .fade-slide-vertical-move {
     transition: transform .2s;
   }
 </style>
