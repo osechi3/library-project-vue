@@ -192,6 +192,7 @@ export default {
     text-align: center;
 
     border-top: 3px solid #ffa500;
+    background-color: white;
   }
   .box-body {
     margin: 5px 0;
