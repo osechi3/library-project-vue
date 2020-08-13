@@ -26,7 +26,7 @@
           class="error-msg">You can't delete the default list.
         </p>
     </div>
-    <div class="box">
+    <div class="box" :class="{ 'chosen-list-box': isCurrentListChosen }">
       <div class="box-body">
         <button
           v-if="!isEditAllowed"
@@ -243,5 +243,8 @@ export default {
   .chosen-list-color-overlay {
     background-color: #ffa500;
     opacity: .2;
+  }
+  .chosen-list-box {
+    background-color: #ffedcc;
   }
 </style>
