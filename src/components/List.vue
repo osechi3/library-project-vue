@@ -83,7 +83,8 @@ export default {
   data () {
     return {
       currentList: {
-        title: this.list.title
+        title: this.list.title,
+        id: this.list.id
       },
 
       isEditAllowed: false,

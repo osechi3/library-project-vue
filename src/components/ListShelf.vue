@@ -6,7 +6,7 @@
     <transition-group id="container-body" tag="div" name="fade-slide-vertical">
       <app-list
         v-for="(list, index) in userLists"
-        :key="list.title"
+        :key="list.id"
         :list="list"
         :index="index">
       </app-list>

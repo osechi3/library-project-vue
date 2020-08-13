@@ -9,7 +9,8 @@ export default new Vuex.Store({
     user: {
       books: [],
       lists: [{
-        title: 'Main'
+        title: 'Main',
+        id: -1
       }],
       globalIdCounter: 0
     },
@@ -101,10 +102,12 @@ export default new Vuex.Store({
       dispatch('updateServerInfo')
     },
 
-    sendList ({ commit, dispatch }, newList) {
+    sendList ({ state, commit, dispatch }, newList) {
       commit('ADD_LIST', {
-        title: newList.title
+        title: newList.title,
+        id: state.user.globalIdCounter
       })
+      commit('INCREMENT_GLOBAL_ID')
       dispatch('updateServerInfo')
     },
 
