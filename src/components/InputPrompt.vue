@@ -62,8 +62,7 @@
           id="book-is-read-yes"
           v-model="newBook.isRead"
           type="radio"
-          true-value="yes"
-          false-value="no">
+          value="yes">
         <label class="labels" for="boo-is-read-yes">Yes</label>
       </div>
     </div>
