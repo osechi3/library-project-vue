@@ -38,10 +38,10 @@ export default new Vuex.Store({
     },
 
     CHANGE_BOOK (state, bookInfo) {
-      console.log(state.user.books[0].title)
-      console.log(bookInfo.index)
+      // console.log(state.user.books[0].title)
+      // console.log(bookInfo.index)
       state.user.books[bookInfo.index] = Object.assign(state.user.books[bookInfo.index], bookInfo.currentBook)
-      console.log(state.user.books[0].title)
+      // console.log(state.user.books[0].title)
     },
 
     DELETE_BOOK (state, index) {
@@ -69,7 +69,7 @@ export default new Vuex.Store({
 
     CHANGE_CHOSEN_LIST (state, listInfo) {
       state.chosenList = listInfo.index
-      console.log(state.chosenList)
+      // console.log(state.chosenList)
     },
 
     INCREMENT_GLOBAL_ID (state) {
@@ -97,7 +97,7 @@ export default new Vuex.Store({
     },
 
     deleteBook ({ commit, dispatch }, index) {
-      console.log(index)
+      // console.log(index)
       commit('DELETE_BOOK', index)
       dispatch('updateServerInfo')
     },
@@ -128,8 +128,8 @@ export default new Vuex.Store({
 
     updateServerInfo ({ dispatch, state }) {
       axios.put('user.json', state.user)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+      // .then(response => console.log(response))
+      // .catch(error => console.log(error))
     },
 
     getServerInfo ({ state }) {
@@ -147,7 +147,7 @@ export default new Vuex.Store({
             }
           }
         })
-        .catch(error => console.log(error))
+        // .catch(error => console.log(error))
     }
   },
 

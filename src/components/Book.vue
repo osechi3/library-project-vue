@@ -159,12 +159,12 @@ export default {
       } else {
         this.isEditAllowed = !this.isEditAllowed
       }
-      console.log(this.currentBook)
-      console.log(this.userBooks[this.index])
+      // console.log(this.currentBook)
+      // console.log(this.userBooks[this.index])
     },
 
     abortChanges () {
-      console.log(this.userBooks[this.index])
+      // console.log(this.userBooks[this.index])
       this.currentBook = Object.assign(this.currentBook, this.userBooks[this.index])
       this.isEditAllowed = !this.isEditAllowed
       // console.log(this.currentBook)

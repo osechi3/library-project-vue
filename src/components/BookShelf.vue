@@ -29,7 +29,7 @@ export default {
     ]),
     currentListUserBooks () {
       return this.userBooks.filter((book, index) => {
-        console.log(book.listIndex)
+        // console.log(book.listIndex)
         return book.listIndex === this.chosenList
       })
     }

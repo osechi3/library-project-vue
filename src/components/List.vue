@@ -120,12 +120,12 @@ export default {
       } else {
         this.isEditAllowed = !this.isEditAllowed
       }
-      console.log(this.currentList)
-      console.log(this.userLists[this.index])
+      // console.log(this.currentList)
+      // console.log(this.userLists[this.index])
     },
 
     abortChanges () {
-      console.log(this.userLists[this.index])
+      // console.log(this.userLists[this.index])
       this.currentList = Object.assign(this.currentList, this.userLists[this.index])
       this.isEditAllowed = !this.isEditAllowed
       // console.log(this.currentList)
@@ -164,9 +164,9 @@ export default {
     },
 
     chooseList () {
-      console.log('clicked')
+      // console.log('clicked')
       this.changeChosenList({ currentList: this.currentList, index: this.index })
-      console.log(this.index === this.chosenList)
+      // console.log(this.index === this.chosenList)
     }
   },
 
