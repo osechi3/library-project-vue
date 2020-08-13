@@ -3,14 +3,15 @@ export const mixinHelperFunctions = {
     checkObjectEquality (obj1, obj2) {
       if (this.checkObjectEqualityLength(obj1, obj2) === false) return false
 
-      const obj1Values = Object.values(obj1)
-      const obj2Values = Object.values(obj2)
+      const obj1Values = Object.values(obj1).map(value => value.toString())
+      const obj1ValuesSorted = obj1Values.sort()
+      const obj2Values = Object.values(obj2).map(value => value.toString())
+      const obj2ValuesSorted = obj2Values.sort()
 
-      let numberOfEqualValues = 0
-      obj1Values.forEach(value => {
-        if (obj2Values.find(value2 => value === value2)) numberOfEqualValues++
-      })
-      return (numberOfEqualValues === obj1Values.length)
+      for (let index = 0; index < obj2ValuesSorted.length; index++) {
+        if (obj1ValuesSorted[index] !== obj2ValuesSorted[index]) return false
+      }
+      return true
     },
 
     checkObjectEqualityLength (obj1, obj2) {
