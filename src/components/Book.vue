@@ -255,7 +255,7 @@ export default {
     top: 52px;
     left: 2px;
     padding: 3px;
-
+    z-index: 1;
     width: 215px;
 
     font-size: 14px;
