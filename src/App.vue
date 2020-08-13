@@ -1,24 +1,29 @@
 <template>
   <div id="app">
-    <div
-      class="color-overlay"
-      v-if="isShownInputBoxBook || isShownInputBoxList">
-    </div>
+    <transition name="fade">
+      <div
+        class="color-overlay"
+        v-if="isShownInputBoxBook || isShownInputBoxList">
+      </div>
+    </transition>
     <app-header
       @add-book-btn-clicked="toggleInputBoxBook"
       @add-list-btn-clicked="toggleInputBoxList">
     </app-header>
-
-    <input-prompt
-      v-if="isShownInputBoxBook"
-      @submit-btn-clicked="toggleInputBoxBook"
-      @close-btn-clicked="toggleInputBoxBook">
-    </input-prompt>
-    <input-prompt-list
-      v-if="isShownInputBoxList"
-      @submit-btn-clicked="toggleInputBoxList"
-      @close-btn-clicked="toggleInputBoxList">
-    </input-prompt-list>
+    <transition name="fade">
+      <input-prompt
+        v-if="isShownInputBoxBook"
+        @submit-btn-clicked="toggleInputBoxBook"
+        @close-btn-clicked="toggleInputBoxBook">
+      </input-prompt>
+    </transition>
+    <transition name="fade">
+      <input-prompt-list
+        v-if="isShownInputBoxList"
+        @submit-btn-clicked="toggleInputBoxList"
+        @close-btn-clicked="toggleInputBoxList">
+      </input-prompt-list>
+    </transition>
 
     <div id="shelf-container">
       <app-list-shelf></app-list-shelf>
@@ -95,5 +100,13 @@ export default {
 
 #shelf-container {
   display: flex;
+}
+
+/* Animations */
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all .2s ease-out;
 }
 </style>
