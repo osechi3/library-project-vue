@@ -128,7 +128,8 @@ export default {
         author: this.book.author,
         numberOfPages: this.book.numberOfPages,
         isRead: this.book.isRead,
-        listIndex: this.book.listIndex
+        listIndex: this.book.listIndex,
+        id: this.book.id
       },
 
       isEditAllowed: false,

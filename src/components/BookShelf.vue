@@ -6,7 +6,7 @@
     <transition-group id="container-body" tag="div" name="fade-slide-horizontal">
       <app-book
         v-for="(book, index) in userBooks"
-        :key="book.title"
+        :key="book.id"
         :book="book"
         :index="index"></app-book>
     </transition-group>

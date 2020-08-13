@@ -10,7 +10,8 @@ export default new Vuex.Store({
       books: [],
       lists: [{
         title: 'Main'
-      }]
+      }],
+      globalIdCounter: 0
     },
 
     chosenList: 0
@@ -68,18 +69,24 @@ export default new Vuex.Store({
     CHANGE_CHOSEN_LIST (state, listInfo) {
       state.chosenList = listInfo.index
       console.log(state.chosenList)
+    },
+
+    INCREMENT_GLOBAL_ID (state) {
+      state.user.globalIdCounter++
     }
   },
 
   actions: {
-    sendBook ({ commit, dispatch, getters }, newBook) {
+    sendBook ({ state, commit, dispatch, getters }, newBook) {
       commit('ADD_BOOK', {
         title: newBook.title,
         author: newBook.author,
         numberOfPages: newBook.numberOfPages,
         isRead: newBook.isRead,
-        listIndex: getters.chosenList
+        listIndex: getters.chosenList,
+        id: state.user.globalIdCounter
       })
+      commit('INCREMENT_GLOBAL_ID')
       dispatch('updateServerInfo')
     },
 
@@ -131,6 +138,9 @@ export default new Vuex.Store({
             }
             if (key === 'lists') {
               state.user.lists = response.data[key]
+            }
+            if (key === 'globalIdCounter') {
+              state.user.globalIdCounter = response.data[key]
             }
           }
         })
