@@ -76,6 +76,6 @@ export default {
     position: absolute;
   }
   .fade-slide-horizontal-move {
-    transition: transform 1s;
+    transition: transform .2s;
   }
 </style>

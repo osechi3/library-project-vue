@@ -63,13 +63,13 @@ export default {
     transform: translateY(-10px);
   }
   .fade-slide-enter-active {
-    transition: all .5s ease;
+    transition: all .2s ease;
   }
   .fade-slide-leave-active {
-    transition: all .5s ease;
+    transition: all .2s ease;
     position: absolute;
   }
   .fade-slide-move {
-    transition: transform 1s;
+    transition: transform .2s;
   }
 </style>
