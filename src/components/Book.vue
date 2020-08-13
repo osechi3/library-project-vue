@@ -210,6 +210,8 @@ export default {
     width: 230px;
 
     text-align: center;
+
+    background-color: white;
   }
   .box-head {
     margin: 0;

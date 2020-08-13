@@ -3,13 +3,13 @@
     <div id="container-head">
       <h1 class="title">Your books</h1>
     </div>
-    <div id="container-body">
+    <transition-group id="container-body" tag="div" name="fade-slide-horizontal">
       <app-book
-      v-for="(book, index) in userBooks"
-      :key="book.title"
-      :book="book"
-      :index="index"></app-book>
-    </div>
+        v-for="(book, index) in userBooks"
+        :key="book.title"
+        :book="book"
+        :index="index"></app-book>
+    </transition-group>
   </div>
 </template>
 
@@ -61,5 +61,21 @@ export default {
     margin-top: 10px;
 
     font-size: 22px;
+  }
+
+  /* Animations */
+  .fade-slide-horizontal-enter, .fade-slide-horizontal-leave-to {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  .fade-slide-horizontal-enter-active {
+    transition: all .2s ease-in;
+  }
+  .fade-slide-horizontal-leave-active {
+    transition: all .2s ease-in;
+    position: absolute;
+  }
+  .fade-slide-horizontal-move {
+    transition: transform 1s;
   }
 </style>
