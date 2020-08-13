@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: 'library-project-vue',
   chainWebpack (config) {
     config
       .plugin('html')
