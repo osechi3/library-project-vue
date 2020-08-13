@@ -38,7 +38,7 @@ export default new Vuex.Store({
     CHANGE_BOOK (state, bookInfo) {
       console.log(state.user.books[0].title)
       console.log(bookInfo.index)
-      state.user.books[bookInfo.index] = Object.assign(state.user.books[bookInfo.index], bookInfo)
+      state.user.books[bookInfo.index] = Object.assign(state.user.books[bookInfo.index], bookInfo.currentBook)
       console.log(state.user.books[0].title)
     },
 
@@ -52,7 +52,7 @@ export default new Vuex.Store({
 
     CHANGE_LIST (state, listInfo) {
       state.user.lists[listInfo.index] =
-        Object.assign(state.user.lists[listInfo.index], listInfo)
+        Object.assign(state.user.lists[listInfo.index], listInfo.currentList)
     },
 
     DELETE_LIST (state, index) {

@@ -83,8 +83,7 @@ export default {
   data () {
     return {
       currentList: {
-        title: this.list.title,
-        index: this.index
+        title: this.list.title
       },
 
       isEditAllowed: false,
@@ -114,7 +113,7 @@ export default {
     confirmChanges () {
       if (this.checkObjectEquality(this.currentList, this.userLists[this.index]) === false) {
         if (this.validate()) {
-          this.changeList(this.currentList)
+          this.changeList({ currentList: this.currentList, index: this.index })
           this.isEditAllowed = !this.isEditAllowed
         }
       } else {

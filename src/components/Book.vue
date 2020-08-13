@@ -151,7 +151,7 @@ export default {
     confirmChanges () {
       if (this.checkObjectEquality(this.currentBook, this.userBooks[this.index]) === false) {
         if (this.validate()) {
-          this.changeBook(this.currentBook)
+          this.changeBook({ currentBook: this.currentBook, index: this.index })
           this.isEditAllowed = !this.isEditAllowed
         }
       } else {
