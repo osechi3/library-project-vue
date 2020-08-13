@@ -99,7 +99,7 @@ export default {
     ]),
 
     isCurrentListChosen () {
-      return this.currentList.index === this.chosenList
+      return this.index === this.chosenList
     }
   },
 
@@ -164,8 +164,8 @@ export default {
 
     chooseList () {
       console.log('clicked')
-      this.changeChosenList(this.currentList)
-      console.log(this.currentList.index === this.chosenList)
+      this.changeChosenList({ currentList: this.currentList, index: this.index })
+      console.log(this.index === this.chosenList)
     }
   },
 
