@@ -11,11 +11,11 @@
       @add-list-btn-clicked="toggleInputBoxList">
     </app-header>
     <transition name="fade">
-      <input-prompt
+      <input-prompt-book
         v-if="isShownInputBoxBook"
         @submit-btn-clicked="toggleInputBoxBook"
         @close-btn-clicked="toggleInputBoxBook">
-      </input-prompt>
+      </input-prompt-book>
     </transition>
     <transition name="fade">
       <input-prompt-list
@@ -34,7 +34,7 @@
 
 <script>
 import Header from './components/Header'
-import InputPrompt from './components/InputPrompt'
+import InputPromptBook from './components/InputPromptBook'
 import BookShelf from './components/BookShelf'
 import ListShelf from './components/ListShelf'
 
@@ -45,7 +45,7 @@ export default {
   name: 'App',
   components: {
     appHeader: Header,
-    inputPrompt: InputPrompt,
+    inputPromptBook: InputPromptBook,
     inputPromptList: InputPromptList,
     appBookShelf: BookShelf,
     appListShelf: ListShelf
