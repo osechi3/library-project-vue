@@ -1,5 +1,6 @@
 module.exports = {
-  publicPath: 'library-project-vue',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/library-project-vue/' : '/',
   chainWebpack (config) {
     config
       .plugin('html')
